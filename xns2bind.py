@@ -13,11 +13,15 @@ def parse(file):
     for child in root:
         if child.tag == 'rdata':
             sub = child[0].text + '.'
+            rr_pref = child[4].text + '\t'
 
             if sub == '@.':
                 sub = ''
 
-            print(sub + name, '\t', child[5].text, '\tIN\t', child[1].text, '\t', child[3].text)
+            if rr_pref == 'N/A\t':
+                rr_pref = ''
+
+            print(sub + name + '\t' + child[5].text + '\tIN\t' + child[1].text + '\t' + rr_pref + child[3].text)
 
 
 if __name__ == "__main__":
